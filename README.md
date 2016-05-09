@@ -1,7 +1,14 @@
 # docker-kong-oauth
 An example of implementing Kong's oauth plugin with docker
 
-**Warning:** Work in Progress
+> **Warning:** Work in Progress
+
+## Getting Started
+
+```
+docker-compose up -d && docker-compose logs
+```
+
 
 **Progress**
 
