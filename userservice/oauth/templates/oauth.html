@@ -1,0 +1,10 @@
+<h3>Welcome: {{user.username}}</h3>
+<p>Allow access to: {{client}} by {{consumer}}</p>
+<form action="/authorize/" method="POST">
+{% csrf_token %}
+<div>
+	<input name="user_id" type="text" value="{{user.id}}" />
+	<input name="client_id" type="text" value="{{client_id}}" />
+	<button type="submit">Authorize</button>
+</div>
+</form>

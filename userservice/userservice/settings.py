@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'oauth',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -119,3 +121,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+KONG_ADMIN_URL = 'http://192.168.99.100:8001'
+KONG_URL = 'https://192.168.99.100:8443'
+
+# we always authenticate against a specific service
+# a code/token from one service can be used against other services
+# using oauth2 plugin
+OAUTH_SERVICE = {
+    "host": "service1.com",
+    "provision_key": "7656a7f4dee345a6a1270a273c099480"
+}
+LOGIN_URL = '/admin/login'
