@@ -14,9 +14,11 @@ docker-compose up -d && docker-compose logs
 
 * [x] MicroService's with docker-compose
 * [x] Manually register all services + verify how OAuth plugin functions
-* [ ] Create actual authentication backend which interacts with Kong OAuth using Django's user management system
-* [ ] Add https via docker setup 
+* [x] Create actual authentication backend which interacts with Kong OAuth using Django's user management system
 * [ ] Automate initial API registration etc via shell script / python script / go script. 
+* [ ] Add the ability to create the OAuth Client Application 
+* [ ] Add the client part of the puzzle
+* [ ] Make it look nice
 * [ ] Write linked blog post
 * [ ] [Profit](http://www.lstreetc.com/wp-content/uploads/2014/04/Underpants-Gnomes.png)
 

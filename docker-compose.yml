@@ -27,6 +27,7 @@ services:
       - label:seccomp:unconfined
   userservice:
     build: userservice
+    env_file: environment.env
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - './userservice:/code'
@@ -46,6 +47,14 @@ services:
       - './service2:/code'
     ports:
       - '8004:3000'
+  client:
+    build: client
+    command: python app.py
+    env_file: environment.env
+    volumes: 
+      - ./client:/code
+    ports:
+      - "80:5000"
   ui:  
     restart: on-failure
     image: pgbi/kong-dashboard

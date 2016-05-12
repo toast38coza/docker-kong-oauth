@@ -122,8 +122,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-KONG_ADMIN_URL = 'http://192.168.99.100:8001'
-KONG_URL = 'https://192.168.99.100:8443'
+KONG_ADMIN_URL = os.environ.get('kong_admin_url', 'http://192.168.99.100:8001')
+KONG_URL = os.environ.get('kong_url', 'https://192.168.99.100:8443')
 
 # we always authenticate against a specific service
 # a code/token from one service can be used against other services

@@ -1,0 +1,24 @@
+{% extends "oauth/base.html" %}
+
+{% block 'content' %}
+<div class="mdl-cell mdl-cell--12-col">
+	<h3>Create an application</h3>
+	<p>Allow access to: {{client}} by {{consumer}}</p>
+	<form action="/application/" method="POST">
+		{% csrf_token %}
+		{{application_form}}
+		<div>
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Create Application</button>
+		</div>
+	</form>
+	{% if consumer %}
+	<h3>Consumer</h3>
+	<pre><code>{{consumer}}</code></pre>
+	{% endif %}
+
+	{% if client %}
+	<h3>Client</h3>
+	<pre><code>{{client}}</code></pre>
+	{% endif %}
+</div>
+{% endblock %}

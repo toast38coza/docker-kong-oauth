@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.conf import settings
 from django.http import HttpResponseRedirect
-from oauth import kong
+from oauth import kong, forms
 
 @login_required
 @require_http_methods(["GET"])
@@ -23,8 +23,30 @@ def oauth_allow_access(request):
         "consumer": consumer.json().get("username"),
         "user": request.user,
     }
-    return render(request, 'oauth.html', context)
+    return render(request, 'oauth/oauth.html', context)
 
+@login_required
+@require_http_methods(["GET", "POST"])
+def create_application(request):
+    client = None
+    consumer = None
+    if request.method == 'POST':
+        application_form = forms.ClientApplicationForm(request.POST)
+        if application_form.is_valid():            
+            client, consumer = application_form.save(request.user)
+    else:
+        data = {
+            "username": request.user.username,
+            "custom_id": request.user.pk,
+            "client": client,
+            "consumer": consumer,
+        }
+        application_form = forms.ClientApplicationForm(initial=data)
+
+    context = {
+        "application_form": application_form,
+    }
+    return render(request, 'oauth/applications.html', context)
 
 @require_http_methods(["POST"])
 def perform_oauth(request):
