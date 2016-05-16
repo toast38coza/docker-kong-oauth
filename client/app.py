@@ -6,16 +6,38 @@ app = Flask(__name__)
 ## settings:
 client_id = os.environ.get('client_id', None)
 client_secret = os.environ.get('client_secret', None)
+kong_url = os.environ.get('kong_url', None)
+
+def get_token(code, client_id, client_secret):
+    
+    oauth_host = "service1.com"
+    headers = { "Host": oauth_host }    
+    data = {
+        "grant_type": "authorization_code",
+        "client_id": client_id,
+        "client_secret": client_secret,
+        "code": code,
+    }
+    url = "{}/oauth2/token" . format (kong_url)
+    return requests.post(url, data, headers=headers, verify=False)
 
 @app.route("/")
 def hello():
 
     code = request.args.get('code', None)
-
+    token = None
+    service1_response = None
+    service2_response = None
     if code is not None:
         # get token
-        return requests.post(url, data, headers=headers, verify=False)
 
+        token = get_token(code, client_id, client_secret).json()
+        
+
+        url1 = "{}/service1?access_token={}" . format (kong_url, token.get('access_token'))
+        url2 = "{}/service2?access_token={}" . format (kong_url, token.get('access_token'))
+        service1_response = requests.get(url1, verify=False)
+        service2_response = requests.get(url2, verify=False)
         # call service 1
         # call service 2
 
@@ -23,6 +45,10 @@ def hello():
         "client_id": client_id,
         "client_secret": client_secret,
         "code": code,
+        "token_response": token,
+        "service_response1": service1_response,
+        "service_response2": service2_response,
+
     }
     return render_template('index.html', **context)
 

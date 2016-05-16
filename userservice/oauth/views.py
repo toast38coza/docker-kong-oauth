@@ -29,11 +29,12 @@ def oauth_allow_access(request):
 @require_http_methods(["GET", "POST"])
 def create_application(request):
     client = None
-    consumer = None
+    consumer = kong.get_or_create_consumer(request.user)
+    
     if request.method == 'POST':
         application_form = forms.ClientApplicationForm(request.POST)
         if application_form.is_valid():            
-            client, consumer = application_form.save(request.user)
+            consumer = application_form.save(request.user)
     else:
         data = {
             "username": request.user.username,
@@ -43,8 +44,15 @@ def create_application(request):
         }
         application_form = forms.ClientApplicationForm(initial=data)
 
+    if consumer is not None:
+        client_list = kong.get_consumer_clients(consumer.json().get("id"))
+
+
     context = {
         "application_form": application_form,
+        "client": client,
+        "consumer": consumer.json(),
+        "client_list": client_list.json()
     }
     return render(request, 'oauth/applications.html', context)
 

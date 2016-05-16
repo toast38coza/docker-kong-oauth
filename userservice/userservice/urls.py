@@ -18,7 +18,7 @@ from django.contrib import admin
 from oauth import views
 
 urlpatterns = [
-    url(r'^oauth/', views.oauth_allow_access),
+    url(r'^oauth/', views.oauth_allow_access, name="oauth"),
     url(r'^authorize/', views.perform_oauth),
     url(r'^application/', views.create_application),
     url('^', include('django.contrib.auth.urls')),

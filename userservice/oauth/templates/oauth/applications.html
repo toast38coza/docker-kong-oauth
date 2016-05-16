@@ -3,7 +3,6 @@
 {% block 'content' %}
 <div class="mdl-cell mdl-cell--12-col">
 	<h3>Create an application</h3>
-	<p>Allow access to: {{client}} by {{consumer}}</p>
 	<form action="/application/" method="POST">
 		{% csrf_token %}
 		{{application_form}}
@@ -16,9 +15,31 @@
 	<pre><code>{{consumer}}</code></pre>
 	{% endif %}
 
-	{% if client %}
-	<h3>Client</h3>
-	<pre><code>{{client}}</code></pre>
+	{% if client_list %}
+	<pre><code>{{client_list}}</code></pre>
+	<h3>All clients for this consumer</h3>
+	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+	  <div class="mdl-tabs__tab-bar">
+	  	{% for client in client_list.data %}
+	      <a href="#{{client.client_id}}-panel" class="mdl-tabs__tab {% if forloop.first %}is-active{% endif %}">
+	      	{{ client.name }}</a>
+	    {% endfor %}
+	  </div>
+	  {% for client in client_list.data %}
+	  <div class="mdl-tabs__panel {% if forloop.first %}is-active{% endif %}" id="{{client.client_id}}-panel">
+	    <strong>Client ID:</strong> {{ client.client_id }}
+	    {% for key, value in client.items %}
+	    <div><strong>{{key}}</strong>: {{value}}</div>
+	    {% endfor %}
+	    
+	    <div>
+	    	Authenticate a user with this app:
+	    	<a href="{% url 'oauth' %}?client_id={{ client.client_id }}" class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--colored">			  Authenticate
+			</a>
+	    </div>
+	  </div>
+	  {% endfor %}
+	</div>	
 	{% endif %}
 </div>
 {% endblock %}

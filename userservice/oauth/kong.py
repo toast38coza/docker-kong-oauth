@@ -29,9 +29,23 @@ def create_client_application(consumer_id, app_name, redirect_uri):
     url = "{}/consumers/{}/oauth2" . format (settings.KONG_ADMIN_URL, consumer_id)
     return requests.post(url, data)
 
+def get_consumer_clients(consumer_id):
+    url = "{}/consumers/{}/oauth2" . format (settings.KONG_ADMIN_URL, consumer_id)
+    return requests.get(url)
+
+def get_or_create_consumer(user):
+    consumer_response = get_consumer_by_username(user.username)
+    if consumer_response.status_code == 404:
+        consumer_response = create_consumer(user.username, user.pk)
+    return consumer_response
+
 def get_consumer(consumer_id):  
     url = "{}/consumers/{}" . format (settings.KONG_ADMIN_URL, consumer_id)
     return requests.get(url) 
+
+def get_consumer_by_username(username):  
+    url = "{}/consumers/{}" . format (settings.KONG_ADMIN_URL, username)
+    return requests.get(url)     
 
 def get_client(client_id):
     url = "{}/oauth2?client_id={}" . format (settings.KONG_ADMIN_URL, client_id)
