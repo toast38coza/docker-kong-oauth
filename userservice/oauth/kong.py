@@ -36,7 +36,7 @@ def get_consumer_clients(consumer_id):
 def get_or_create_consumer(user):
     consumer_response = get_consumer_by_username(user.username)
     if consumer_response.status_code == 404:
-        consumer_response = create_consumer(user.username, user.pk)
+        consumer_response = create_consumer(user)
     return consumer_response
 
 def get_consumer(consumer_id):  

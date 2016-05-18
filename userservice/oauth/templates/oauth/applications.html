@@ -2,21 +2,15 @@
 
 {% block 'content' %}
 <div class="mdl-cell mdl-cell--12-col">
-	<h3>Create an application</h3>
-	<form action="/application/" method="POST">
-		{% csrf_token %}
-		{{application_form}}
-		<div>
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Create Application</button>
-		</div>
-	</form>
+	
 	{% if consumer %}
 	<h3>Consumer</h3>
-	<pre><code>{{consumer}}</code></pre>
+	{% for key, value in consumer.items %}
+    <div><strong>{{key}}</strong>: {{value}}</div>
+    {% endfor %}
 	{% endif %}
 
-	{% if client_list %}
-	<pre><code>{{client_list}}</code></pre>
+	{% if client_list.data %}
 	<h3>All clients for this consumer</h3>
 	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 	  <div class="mdl-tabs__tab-bar">
@@ -37,9 +31,26 @@
 	    	<a href="{% url 'oauth' %}?client_id={{ client.client_id }}" class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--colored">			  Authenticate
 			</a>
 	    </div>
-	  </div>
-	  {% endfor %}
+	  </div>	  
+	  {% endfor %}	  
 	</div>	
+	<h3>Create another application</h3>
+	<form action="/application/" method="POST">
+		{% csrf_token %}
+		{{application_form}}
+		<div>
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Create Application</button>
+		</div>
+	</form>
+	{% else %}
+	<h3>Create an application</h3>
+	<form action="/application/" method="POST">
+		{% csrf_token %}
+		{{application_form}}
+		<div>
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Create Application</button>
+		</div>
+	</form>
 	{% endif %}
 </div>
 {% endblock %}

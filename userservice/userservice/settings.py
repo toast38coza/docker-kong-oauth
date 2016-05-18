@@ -130,6 +130,6 @@ KONG_URL = os.environ.get('kong_url', 'https://192.168.99.100:8443')
 # using oauth2 plugin
 OAUTH_SERVICE = {
     "host": "service1.com",
-    "provision_key": "7656a7f4dee345a6a1270a273c099480"
+    "provision_key": "6673d81e2f8b498bb8ee916314f9bb11"
 }
-LOGIN_URL = '/admin/login'
+LOGIN_URL = '/admin/login/'

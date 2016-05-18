@@ -28,18 +28,17 @@ def oauth_allow_access(request):
 @login_required
 @require_http_methods(["GET", "POST"])
 def create_application(request):
-    client = None
+    
     consumer = kong.get_or_create_consumer(request.user)
     
     if request.method == 'POST':
         application_form = forms.ClientApplicationForm(request.POST)
         if application_form.is_valid():            
-            consumer = application_form.save(request.user)
+            application_form.save(request.user)
     else:
         data = {
             "username": request.user.username,
             "custom_id": request.user.pk,
-            "client": client,
             "consumer": consumer,
         }
         application_form = forms.ClientApplicationForm(initial=data)
@@ -50,7 +49,6 @@ def create_application(request):
 
     context = {
         "application_form": application_form,
-        "client": client,
         "consumer": consumer.json(),
         "client_list": client_list.json()
     }

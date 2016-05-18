@@ -32,8 +32,7 @@ def hello():
         # get token
 
         token = get_token(code, client_id, client_secret).json()
-        
-
+        print (token)
         url1 = "{}/service1?access_token={}" . format (kong_url, token.get('access_token'))
         url2 = "{}/service2?access_token={}" . format (kong_url, token.get('access_token'))
         service1_response = requests.get(url1, verify=False)
