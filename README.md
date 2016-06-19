@@ -96,7 +96,9 @@ Now let's try authenticate. Go to 192.168.99.100
 2. You're sent to the userservice to authenticate. Because you're logged out, it will ask you to login. You can use the user above to login again. 
 3. Now it will ask you to authorize the client app. Click authorize.
 
-You should be redirected back to the client. The client will spit out the response
+You should be successfully authenticated and returned to the client again. This time the client will spit out the response from our two upstream services. 
+
+Congrats. You've authenticated using oauth :) 
 
 **Progress**
 
