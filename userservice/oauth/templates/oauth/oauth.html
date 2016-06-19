@@ -9,7 +9,7 @@
 	 	</div>
 
 	 	<div class="mdl-card__supporting-text">
-			<p>Allow access to: {{client}} by {{consumer}}</p>
+			<h5>Would you like give the application <i>{{client}}</i> by <i>{{consumer}}</i> permissions to authenticate on your behalf?</h5>
 			
 			{% csrf_token %}
 			<div class="mdl-textfield mdl-js-textfield">
@@ -23,7 +23,7 @@
 			
 		</div>
 		<div class="mdl-card__actions mdl-card--border">
-			<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit" >Authorize</button>
+			<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit" >Authorize application</button>
 		</div>
 		</form>
 	</div>

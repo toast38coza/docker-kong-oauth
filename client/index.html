@@ -13,16 +13,25 @@
 
   </head>
   <body>
-    <div class="container">
-      <h1>Hi there.</h1>
+    <main class="mdl-layout__content">
 
-      <p>
-      Your client_id: {{client_id}}<br/>
-      Your client_secret: {{client_secret}}<br/>
-      </p>
+      <div class="mdl-card mdl-shadow--4dp mdl-cell--6-col">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">Hi there</h2>
+        </div>
+        <div class="mdl-card__supporting-text"> 
+          <p>
+          Client_id: {{client_id}}<br/>
+          Client_secret: {{client_secret}}<br/>
+          </p>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+          <a 
+            href="http://docker.local:8002/oauth/?client_id=a91c7b3f468042dd8ef05ead65fb2552"
+            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" >Authenticate</a>
+        </div>
 
-      <a href="http://docker.local:8002/oauth/?client_id=a91c7b3f468042dd8ef05ead65fb2552" >Authenticate</a>
-    </div>
-
+      </div>
+    </main>
   </body>  
 </html>

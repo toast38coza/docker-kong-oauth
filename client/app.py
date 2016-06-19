@@ -20,6 +20,7 @@ def get_token(code, client_id, client_secret):
     }
     url = "{}/oauth2/token" . format (kong_url)
     return requests.post(url, data, headers=headers, verify=False)
+    
 
 @app.route("/")
 def hello():
