@@ -24,16 +24,25 @@
       No Client details are set. <a href="">Create a client application?</a>
       {% endif %}
 
-      {% if not code %}
-      <p>
-      <a href="http://docker.local:8002/oauth/?client_id={{client_id}}" >Authenticate</a>
-      </p>
-      {% else %}
-      <div>service_response1: {{service_response1.content}}</div>
-      <div>service_response2: {{service_response2.content}}</div>
+      {% if token_response %}
+      <div>
+      Access token: {{token_response}}<br/>
+      </div>
+      {% endif %}
+
+      {% if service_response1.content %}
+      <h4>service_response1:</h4>
+      <pre><code> {{service_response1.content}}</code></pre>
+      <h4>service_response2:</h4>
+      <pre><code>{{service_response2.content}}</code></pre>
       {% endif %}
       </div>
     </div>
+
+    <p>
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+        href="http://docker.local:8002/oauth/?client_id={{client_id}}" >Authenticate</a>
+    </p>
 
   </body>  
 </html>

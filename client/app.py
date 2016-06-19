@@ -58,4 +58,7 @@ if __name__ == "__main__":
 curl http://docker.local:8000/oauth2/token \
      -H "Host: service1.com" \
      -H "x-forwarded-proto: https" -d "grant_type=authorization_code" -d "client_id=b4b123e18f3349e6bc7172a656692612" -d "client_secret=10639ab4622147318f7910bcf7b7b460"  -d "code=b1485adbf74745e8b39bf53b0fd76118" --insecure  
+
+curl -X GET 192.168.99.100:8000/service1?access_token=dd9f9fbe63a749d2b2e10310ce992b14
+
 """    

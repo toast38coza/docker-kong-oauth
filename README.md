@@ -34,7 +34,7 @@ for example:
 sh ./register.sh '192.168.99.100'
 ```
 
-This will register both our services. It will spit out the json response. To add oauth. Now, take not of the id's and run:
+This will register both our services. It will spit out the json response. To add oauth. Now, take note of the id's and run:
 
 ```
 sh ./register2.sh {service1.id} {service2.id}
@@ -95,6 +95,8 @@ Now let's try authenticate. Go to 192.168.99.100
 1. Click _authenticate_
 2. You're sent to the userservice to authenticate. Because you're logged out, it will ask you to login. You can use the user above to login again. 
 3. Now it will ask you to authorize the client app. Click authorize.
+
+You should be redirected back to the client. The client will spit out the response
 
 **Progress**
 

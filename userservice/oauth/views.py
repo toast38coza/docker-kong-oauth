@@ -11,7 +11,7 @@ from oauth import kong, forms
 def oauth_allow_access(request):
     
     client_id = request.GET.get('client_id')
-    client = kong.get_client(client_id)
+    client = kong.get_client(client_id)    
     client_data = client.json().get('data')[0]
 
     consumer_id = client_data.get('consumer_id')
