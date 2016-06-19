@@ -1,7 +1,7 @@
 # docker-kong-oauth
 An example of implementing Kong's oauth plugin with docker
 
-> **Warning:** Work in Progress
+Check out the associated blog post: [Kong oAuth with a Django backend](http://blog.toast38coza.me/kong-oauth-with-a-django-backend-2/)
 
 ## Getting Started
 
@@ -106,10 +106,9 @@ You should be redirected back to the client. The client will spit out the respon
 * [x] Automate initial API registration etc via shell script / python script / go script. 
 * [x] Add the ability to create the OAuth Client Application 
 * [x] Add the client part of the puzzle
-* [ ] Make it look nice
-* [ ] Write linked blog post
+* [x] Make it look nice (sort-of)
+* [x] Write linked blog post
 * [ ] [Profit](http://www.lstreetc.com/wp-content/uploads/2014/04/Underpants-Gnomes.png)
-
 
 
 
