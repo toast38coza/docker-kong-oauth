@@ -46,7 +46,7 @@ def hello():
         "code": code,
         "token_response": token,
         "service_response1": service1_response,
-        "service_response2": service2_response,
+        "service_response2": service2_response    
 
     }
     return render_template('index.html', **context)
